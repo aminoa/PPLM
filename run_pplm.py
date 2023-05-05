@@ -94,7 +94,6 @@ def to_var(x, requires_grad=False, volatile=False, device='cuda'):
         x = x.to(device)
     return Variable(x, requires_grad=requires_grad, volatile=volatile)
 
-
 def top_k_filter(logits, k, probs=False):
     """
     Masks everything but the k top entries as -infinity (1e10).

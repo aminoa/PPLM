@@ -1,3 +1,9 @@
+# Tweets R Us
+
+This project encompasses two parts. One involves the generation of tweets based on a specific sentiment. This uses the PPLM library. The second part involves creating a visualization of the tweets over time. This uses the D3 library via D3blocks and D3graph.
+
+Original README follows.
+
 # PPLM
 
 This repository contains code to run the Plug and Play Language Model (PPLM), as described in this **[blog post](https://eng.uber.com/pplm)** and **[arXiv paper](https://arxiv.org/abs/1912.02164)**. A **[demo](https://transformer.huggingface.co/model/pplm)** and **[Colab notebook](https://colab.research.google.com/drive/1Ux0Z4-ruiVtJ6jUk98uk6FqfvGHCOYL3)** are also available.

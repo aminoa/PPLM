@@ -5,6 +5,8 @@ def generate_tweet(is_positive, cond_text, length, stepsize):
         class_label = 2
     else:
         class_label = 3
+    
+    length += len(cond_text)
 
     # modify this method properly
     tweet = run_pplm_example(
@@ -23,13 +25,12 @@ def generate_tweet(is_positive, cond_text, length, stepsize):
 
     # print(tweet)
 
-    tweet = tweet[len(cond_text):]
+    tweet = tweet[len(cond_text) + 13:]
     return tweet
 
-    # need to keep track of history of generated tweets
-is_positive = False
-cond_text = "I'm so glad that the team one the game"
-
+# need to keep track of history of generated tweets
+is_positive = True
+cond_text = "I hated the new guardians of the galaxy movie. "
 length = 30
 stepsize = 0.2
 

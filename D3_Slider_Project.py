@@ -18,7 +18,7 @@ adj_matrix = pd.DataFrame({
 
 
 tweet = [
-    {'tweet': original_tweet, 'connection': 0, 'sentiment': 0},
+    {'tweet': original_tweet, 'connection': 0, 'sentiment': 0, 'og': 'Starting Tweet'},
     
 ]
 df_tweet = pd.DataFrame(tweet)
@@ -81,7 +81,7 @@ while Done == False:
 
     
     new_tweet_data =  [
-    {'tweet': new_tweet, 'connection': past_connection, 'sentiment': sentiment_score}   
+    {'tweet': new_tweet, 'connection': past_connection, 'sentiment': sentiment_score, 'og': 'Response'}   
 ]
     df_tweet = df_tweet.append(new_tweet_data)
     print(df_tweet)
@@ -99,8 +99,11 @@ while Done == False:
     
 
     d3 = d3graph()
+
+    label = df_tweet['og'].values
    
-    label = df_tweet['tweet'].values
+    tweets = df_tweet['tweet'].values
+
     
     sent_scores = df_tweet['sentiment'].values
     
@@ -110,7 +113,7 @@ while Done == False:
     d3.set_edge_properties(directed=True)
 
     d3.set_node_properties(color=sent_scores)
-    d3.set_node_properties(label=label, color=sent_scores, cmap='Set1')
+    d3.set_node_properties(label=label, color=sent_scores, cmap='coolwarm', tooltip=tweets)
     #d3.set_node_properties(tooltips = label)
     
 

@@ -1,4 +1,4 @@
-# Tweets R Us
+# Sentitweet
 
 This project encompasses two parts. One involves the generation of tweets based on a specific sentiment. This uses the PPLM library. The second part involves creating a visualization of the tweets over time. This uses the D3 library via D3blocks and D3graph.
 

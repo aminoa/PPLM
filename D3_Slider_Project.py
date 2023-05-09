@@ -22,12 +22,10 @@ tweet = [
 df_tweet = pd.DataFrame(tweet)
 print("Here is the slider that you can use to choose the sentiment score that you want to include for the response:\n -1 means very negative\n 0 means neutral \n 1 means very positive \n")
 
-# This is the slider that will update the value of the sentiment
 def update_graph(val):
     # Retrieve the current value of the slider
     slider_value = slider.val
     
-    # Update the global variable graph_value
     global graph_value
     graph_value = slider_value
     
@@ -35,15 +33,12 @@ def update_graph(val):
     confirm_ax = plt.axes([0.8, 0.025, 0.1, 0.04])
     confirm_button = Button(confirm_ax, 'Confirm', color='green', hovercolor='lightgreen')
     
-    # Define the function to handle the confirmation button click
     def confirm_clicked(event):
         global confirmed
         confirmed = True
     
-    # Add an event listener to the confirmation button
     confirm_button.on_clicked(confirm_clicked)
     
-    # Wait for the user to confirm their selection
     global confirmed
     confirmed = False
     while not confirmed:
@@ -58,7 +53,8 @@ while True:
     plt.show()
 
     sentiment_score = graph_value
-    new_tweet = generate_tweet(True, original_tweet, 20, sentiment_score * 0.03)
+    print("Generating tweet...")
+    new_tweet = generate_tweet(True, original_tweet, 30, sentiment_score * 0.03)
 
     print(new_tweet)
     check = input("Would you like to cleanup the tweet? Reply Yes or No: ")
@@ -91,14 +87,20 @@ while True:
     d3.show()
 
     stop_the_tweets = input("Are you happy with your Responses?\n Reply Yes if you are done or No if you want to continue creating responses: ")
-    if stop_the_tweets == "Yes":
+    if stop_the_tweets == 'Yes':
         exit()
     else:
-        reply = input("Do you want to create a potential reply to this tweet, or try a different reply to the original tweet? \n Type Original if you want to find a reply to the original tweet \n Type New if you want to respond to the tweet that has been generated: ")
+        reply = input("Do you want to create a potential reply to this tweet, or try a different reply to the original tweet? \n Type Original if you want to find a reply to the original tweet \n Type New if you want to respond to the tweet that has been generated \n Type Again if you want to generate a response with a different sentiment of the last tweet: ")
         if reply == 'Original':
             find_tweet = df_tweet.iloc[0]
             original_tweet = find_tweet.tweet
             past_connection = 0
+        elif reply == 'Again':
+            find_tweet = df_tweet.iloc[-1]
+            last_connection = find_tweet.connection
+            last_tweet = df_tweet.iloc[last_connection]
+            original_tweet = last_tweet.tweet
+            past_connection = last_connection
         else:
             find_tweet = df_tweet.iloc[-1]
             original_tweet = find_tweet.tweet
